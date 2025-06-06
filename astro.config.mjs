@@ -4,5 +4,5 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nieto35.github.io',
-    base: 'astro_github_pages_ejemplo',
+    base: 'bault',
 })
