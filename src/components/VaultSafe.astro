@@ -1,0 +1,583 @@
+---
+---
+
+<div class="vault-container">
+  <div class="vault-safe" id="vaultSafe">
+    <div class="safe-body">
+      <!-- Cuerpo principal de la caja fuerte -->
+      <div class="safe-door" id="safeDoor">
+        <!-- Escotilla principal -->
+        <div class="dial-container">
+          <div class="dial" id="dial">
+
+            <!-- Números del dial -->
+            <div class="dial-numbers">
+              {Array.from({length: 12}, (_, i) => (
+                <div class="number" style={`transform: rotate(${i * 30}deg)`}>
+                  <span style={`transform: rotate(${-i * 30}deg)`}>{i * 5}</span>
+                </div>
+              ))}
+            </div>
+            <!-- Centro del dial -->
+            <div class="dial-center"></div>
+          </div>
+        </div>
+        
+        <!-- Manijas -->
+        <div class="handle handle-top"></div>
+        <div class="handle handle-bottom"></div>
+        
+        <!-- Bisagras -->
+        <div class="hinge hinge-top"></div>
+        <div class="hinge hinge-bottom"></div>
+      </div>
+      
+      <!-- Interior de la caja fuerte (visible cuando se abre) -->
+      <div class="safe-interior" id="safeInterior">
+        <div class="interior-content">
+          <div class="database-icons">
+            <div class="db-icon">🗄️</div>
+            <div class="db-icon">💾</div>
+            <div class="db-icon">🔒</div>
+          </div>
+          <div class="secure-text">
+            <h3>Tus datos están seguros</h3>
+            <p>Protegidos con encriptación de nivel militar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sombra de la caja fuerte -->
+    <div class="safe-shadow"></div>
+  </div>
+  
+  <!-- Contenido dinámico debajo de la caja fuerte -->
+  <div class="vault-content" id="vaultContent">
+    <div class="content-section" data-section="0">
+      <h2>Bienvenido a Bault</h2>
+      <p>La solución más segura para proteger tus bases de datos</p>
+    </div>
+    
+    <div class="content-section" data-section="1">
+      <h2>Encriptación Militar</h2>
+      <p>Utilizamos AES-256 para proteger cada byte de información</p>
+      <div class="feature-icons">
+        <span class="icon">🔐</span>
+        <span class="icon">🛡️</span>
+        <span class="icon">🔒</span>
+      </div>
+    </div>
+    
+    <div class="content-section" data-section="2">
+      <h2>Backups Automáticos</h2>
+      <p>Programación inteligente que se adapta a tu negocio</p>
+      <div class="feature-icons">
+        <span class="icon">⚡</span>
+        <span class="icon">🔄</span>
+        <span class="icon">📊</span>
+      </div>
+    </div>
+    
+    <div class="content-section" data-section="3">
+      <h2>Recuperación Instantánea</h2>
+      <p>Restaura tus datos en segundos, no en horas</p>
+      <div class="feature-icons">
+        <span class="icon">🚀</span>
+        <span class="icon">⏱️</span>
+        <span class="icon">💨</span>
+      </div>
+    </div>
+    
+    <div class="content-section" data-section="4">
+      <h2>Redundancia Global</h2>
+      <p>Múltiples copias en diferentes regiones del mundo</p>
+      <div class="feature-icons">
+        <span class="icon">🌍</span>
+        <span class="icon">🌐</span>
+        <span class="icon">📡</span>
+      </div>
+    </div>
+    
+    <div class="content-section final" data-section="5">
+      <h2>¿Listo para proteger tus datos?</h2>
+      <p>Únete a miles de empresas que confían en Bault</p>
+      <button class="cta-button">
+        Comenzar Ahora
+        <span class="button-arrow">→</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .vault-container {
+    position: relative;
+    min-height: 600vh; /* Altura extendida para el scroll */
+    width: 100%;
+  }
+  
+  .vault-safe {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    perspective: 1000px;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .safe-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #4a5568, #2d3748);
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.1),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    border: 3px solid #718096;
+    transform-style: preserve-3d;
+  }
+  
+  .safe-door {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #4a5568, #2d3748);
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left center;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid #718096;
+    overflow: hidden;
+  }
+  
+  .safe-door.open {
+    transform: rotateY(-120deg);
+  }
+  
+  .dial-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+  }
+  
+  .dial {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #e2e8f0, #cbd5e0);
+    position: relative;
+    transition: transform 0.1s ease;
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.8),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    border: 2px solid #a0aec0;
+  }
+  
+  .dial-marks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  .mark {
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    background: #4a5568;
+    top: 2px;
+    left: 50%;
+    transform-origin: 50% 58px;
+    margin-left: -1px;
+  }
+  
+  .mark:nth-child(5n) {
+    height: 12px;
+    width: 3px;
+    background: #2d3748;
+    margin-left: -1.5px;
+  }
+  
+  .dial-numbers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  .number {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 8px;
+    left: 50%;
+    transform-origin: 50% 52px;
+    margin-left: -10px;
+  }
+  
+  .number span {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    color: #2d3748;
+    line-height: 20px;
+  }
+  
+  .dial-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #2d3748, #4a5568);
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  }
+  
+  .handle {
+    position: absolute;
+    width: 60px;
+    height: 8px;
+    background: linear-gradient(145deg, #718096, #4a5568);
+    border-radius: 4px;
+    right: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .handle-top {
+    top: 25%;
+  }
+  
+  .handle-bottom {
+    bottom: 25%;
+  }
+  
+  .hinge {
+    position: absolute;
+    width: 8px;
+    height: 40px;
+    background: linear-gradient(145deg, #a0aec0, #718096);
+    border-radius: 4px;
+    left: -4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hinge-top {
+    top: 20%;
+  }
+  
+  .hinge-bottom {
+    bottom: 20%;
+  }
+  
+  .safe-interior {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #f7fafc, #edf2f7);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #e2e8f0;
+  }
+  
+  .safe-interior.visible {
+    opacity: 1;
+  }
+  
+  .interior-content {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .database-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .db-icon {
+    font-size: 24px;
+    animation: float 2s ease-in-out infinite;
+  }
+  
+  .db-icon:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  
+  .db-icon:nth-child(3) {
+    animation-delay: 1s;
+  }
+  
+  .secure-text h3 {
+    color: #2d3748;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .secure-text p {
+    color: #4a5568;
+    font-size: 14px;
+  }
+  
+  .safe-shadow {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 20px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  /* Contenido dinámico */
+  .vault-content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+  .content-section {
+    position: absolute;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 600px;
+    padding: 0 2rem;
+  }
+  
+  .content-section.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .content-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #f8fafc, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .content-section p {
+    font-size: 1.25rem;
+    color: #cbd5e1;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .feature-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .icon {
+    font-size: 3rem;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  .icon:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .icon:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  .cta-button {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    pointer-events: auto;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+  }
+  
+  .button-arrow {
+    transition: transform 0.3s ease;
+  }
+  
+  .cta-button:hover .button-arrow {
+    transform: translateX(4px);
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .vault-safe {
+      width: 250px;
+      height: 250px;
+    }
+    
+    .dial-container {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .number {
+      transform-origin: 50% 42px;
+    }
+    
+    .dial-center {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .content-section h2 {
+      font-size: 2rem;
+    }
+    
+    .content-section p {
+      font-size: 1.125rem;
+    }
+    
+    .feature-icons {
+      gap: 1rem;
+    }
+    
+    .icon {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dial = document.getElementById('dial');
+    const safeDoor = document.getElementById('safeDoor');
+    const safeInterior = document.getElementById('safeInterior');
+    const contentSections = document.querySelectorAll('.content-section');
+    const vaultContainer = document.querySelector('.vault-container');
+    
+    let rotation = 0;
+    let currentSection = 0;
+    
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const containerHeight = vaultContainer.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const maxScroll = containerHeight - windowHeight;
+      const scrollProgress = Math.min(scrollY / maxScroll, 1);
+      
+      // Rotar el dial basado en el scroll (múltiples vueltas)
+      rotation = scrollProgress * 1440; // 4 vueltas completas
+      if (dial) {
+        dial.style.transform = `rotate(${rotation}deg)`;
+      }
+      
+      // Determinar qué sección mostrar
+      const totalSections = contentSections.length;
+      const sectionProgress = scrollProgress * (totalSections - 1);
+      const newSection = Math.floor(sectionProgress);
+      
+      // Cambiar contenido si es necesario
+      if (newSection !== currentSection && newSection < totalSections) {
+        // Ocultar sección actual
+        contentSections[currentSection]?.classList.remove('active');
+        
+        // Mostrar nueva sección
+        currentSection = newSection;
+        contentSections[currentSection]?.classList.add('active');
+      }
+      
+      // Abrir la puerta en la última sección
+      if (scrollProgress > 0.85) {
+        safeDoor?.classList.add('open');
+        safeInterior?.classList.add('visible');
+      } else {
+        safeDoor?.classList.remove('open');
+        safeInterior?.classList.remove('visible');
+      }
+    };
+    
+    // Throttle scroll events para mejor rendimiento
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', onScroll);
+    
+    // Inicializar primera sección
+    if (contentSections.length > 0) {
+      contentSections[0].classList.add('active');
+    }
+    
+    // Inicializar
+    handleScroll();
+  });
+</script>
